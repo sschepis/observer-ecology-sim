@@ -1,0 +1,5 @@
+{
+  "name": "Observer Ecology Simulation",
+  "description": "A web-based simulation of the concepts from the research paper 'Observer Ecologies as Entropy-Minimizing Integer Programs', visualizing Prime-Hilbert embeddings, guild dynamics, and continuous learning.",
+  "requestFramePermissions": []
+}
