@@ -8,6 +8,14 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+        proxy: {
+          '/api/mexc': {
+            target: 'https://api.mexc.com',
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/api\/mexc/, ''),
+            secure: true,
+          }
+        }
       },
       plugins: [react()],
       define: {

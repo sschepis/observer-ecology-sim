@@ -1,14 +1,15 @@
-import type { Candle } from '../types';
+import type { Candle, Timeframe } from '../types';
 
 /**
  * Fetches real market data from the MEXC exchange API.
+ * @param timeframe - The candlestick timeframe (e.g., '1m', '5m', '15m', '30m', '1h', '4h', '1d')
  * @returns A promise that resolves to an array of Candle objects.
  */
-export const fetchMarketData = async (): Promise<Candle[]> => {
+export const fetchMarketData = async (timeframe: Timeframe = '4h'): Promise<Candle[]> => {
   const symbol = 'BTCUSDT';
-  const interval = '4h'; // 4-hour candles provide a good balance of detail and trend
   const limit = 1000; // Max limit
-  const url = `https://api.mexc.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`;
+  // Use the Vite proxy to avoid CORS issues
+  const url = `/api/mexc/api/v3/klines?symbol=${symbol}&interval=${timeframe}&limit=${limit}`;
 
   try {
     const response = await fetch(url);
